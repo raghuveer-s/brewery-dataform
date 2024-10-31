@@ -1,0 +1,6 @@
+config {
+    type: "declaration",
+    database: "website-code-395711",
+    schema: "brewery",
+    table: " brewery_partitioned_clustered",
+}
