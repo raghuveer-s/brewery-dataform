@@ -1,0 +1,5 @@
+dataformCoreVersion: 3.0.7
+defaultProject: website-code-395711
+defaultLocation: europe-west10
+defaultDataset: dataform
+defaultAssertionDataset: dataform_assertions

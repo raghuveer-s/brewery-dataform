@@ -1,5 +1,6 @@
 config {
   type: "incremental",
+  tags: ["daily"],
   bigquery: {
     partitionBy: "DATE(daily_location_sales)",
     requirePartitionFilter: true,
@@ -11,6 +12,16 @@ SELECT
   TIMESTAMP_TRUNC(Brew_Date, DAY) d, 
   SUM(Total_Sales) AS daily_location_sales
 FROM
-  `website-code-395711.brewery.brewery_partitioned_clustered`
+  ${ref("brewery_source")}
+WHERE
+  d >= timestamp_checkpoint
 GROUP BY
   location, d
+
+pre_operations {
+  DECLARE timestamp_checkpoint DEFAULT (
+    ${when(incremental(),
+    `SELECT MAX(d) FROM ${self()}`,
+    `SELECT TIMESTAMP("2023-01-01")`)}
+  )
+}
