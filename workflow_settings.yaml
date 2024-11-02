@@ -1,5 +1,5 @@
 dataformCoreVersion: 3.0.7
 defaultProject: website-code-395711
-defaultLocation: europe-west10
+defaultLocation: EU
 defaultDataset: brewery
 defaultAssertionDataset: dataform_assertions
