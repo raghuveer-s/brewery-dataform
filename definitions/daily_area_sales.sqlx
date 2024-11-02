@@ -12,7 +12,7 @@ SELECT
   TIMESTAMP_TRUNC(Brew_Date, DAY) d, 
   SUM(Total_Sales) AS daily_location_sales
 FROM
-  ${ref("brewery_source")}
+  ${ref("brewery_partitioned_clustered")}
 WHERE
   d >= timestamp_checkpoint
 GROUP BY
