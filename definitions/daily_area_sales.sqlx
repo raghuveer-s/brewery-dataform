@@ -14,7 +14,7 @@ SELECT
 FROM
   ${ref("brewery_partitioned_clustered")}
 WHERE
-  d >= timestamp_checkpoint
+  TIMESTAMP_TRUNC(Brew_Date, DAY) >= timestamp_checkpoint
 GROUP BY
   location, d
 
