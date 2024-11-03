@@ -2,7 +2,7 @@ config {
   type: "incremental",
   tags: ["daily"],
   bigquery: {
-    partitionBy: "DATE(daily_location_sales)",
+    partitionBy: "DATE(d)",
     requirePartitionFilter: true,
   }
 }
