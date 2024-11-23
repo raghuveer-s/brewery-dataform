@@ -1,0 +1,15 @@
+config {
+  type: "assertion",
+  tags: ["daily", "anomaly_detection"]
+}
+
+SELECT
+  *
+FROM
+  ML.DETECT_ANOMALIES(
+    MODEL `brewery.sales_anomaly`,
+    STRUCT(0.01 AS contamination),
+    (SELECT location, daily_location_sales FROM `brewery.daily_area_sales` WHERE d >= TIMESTAMP('2024-01-01'))
+  )
+WHERE
+  is_anomaly IS TRUE

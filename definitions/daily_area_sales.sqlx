@@ -4,6 +4,13 @@ config {
   bigquery: {
     partitionBy: "DATE(d)",
     requirePartitionFilter: true,
+  },
+  assertions: {
+    nonNull: ["Location"],
+    uniqueKey: ["Location"],
+    rowConditions: [
+      'd < TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY)'
+    ]
   }
 }
 
@@ -21,7 +28,7 @@ GROUP BY
 pre_operations {
   DECLARE timestamp_checkpoint DEFAULT (
     ${when(incremental(),
-    `SELECT MAX(d) FROM ${self()}`,
+    `SELECT MAX(d) FROM ${self()} WHERE d is not null`,
     `SELECT TIMESTAMP("2023-01-01")`)}
   )
 }
