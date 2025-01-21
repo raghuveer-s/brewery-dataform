@@ -6,7 +6,7 @@ const TableType = {
 };
 
 const config = {
-    type: TableType.INCREMENTAL,
+    type: "incremental",
     bigquery: {
         partitionBy: 'DATE(d)',
         requirePartitionFilter: true,
