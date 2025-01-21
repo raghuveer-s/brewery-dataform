@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "./build",
+    "rootDir": "./src",
+    "target": "es6",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": false,
+    "emitDeclarationOnly": false
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/global.d.ts"
+  ],
+  "exclude": [
+    "node_modules", 
+    "build",
+  ]
+}
