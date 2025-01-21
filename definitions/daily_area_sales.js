@@ -1,6 +1,5 @@
-import { config } from '../../globals/config.js';
+const tableConfig = global.config;
 
-const tableConfig = config;
 publish('daily_area_sales', tableConfig)
     .query((ctx) => `SELECT
   Location as location, 

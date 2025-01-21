@@ -1,3 +1,10 @@
+//import { TableType } from "./enums";
+
+const TableType = {
+    "VIEW": "view",
+    "INCREMENTAL": "incremental"
+};
+
 const config = {
     type: TableType.INCREMENTAL,
     bigquery: {
@@ -7,4 +14,4 @@ const config = {
     tags: ['daily'],
 };
 
-export { config };
+module.exports = { config, TableType };

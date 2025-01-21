@@ -1,5 +1,3 @@
-import { config } from '../../globals/config';
-
 const tableConfig: ITableConfig = config;
 
 publish('daily_area_sales', tableConfig)

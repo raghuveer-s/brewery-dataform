@@ -7,4 +7,4 @@ const config: ITableConfig = {
   tags: ['daily'],
 }
 
-export { config };
+declare config;
