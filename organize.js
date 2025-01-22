@@ -10,8 +10,19 @@ const folderMappings = [
   { source: 'build/tables/tests/*.js', destination: 'definitions/tests' },
 ];
 
+async function cleanDefinitionsFolder() {
+  const jsFiles = globSync('definitions/**/*.js');
+  for (const file of jsFiles) {
+    await fs.remove(file);
+    console.log(`Removed: ${file}`);
+  }
+}
+
 // Function to move files based on the mappings
 async function organizeFiles() {
+  // Clean existing .js files first
+  await cleanDefinitionsFolder();
+
   for (const { source, destination } of folderMappings) {
     // Match files using glob
     const files = globSync(source);
