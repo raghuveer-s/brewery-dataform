@@ -18,7 +18,7 @@ GROUP BY
     DECLARE timestamp_checkpoint 
     DEFAULT (${ctx.when(
       ctx.incremental(),
-      `SELECT MAX(d) FROM ${ctx.self()}`,
+      `SELECT MAX(d) FROM ${ctx.self()} WHERE d IS NOT NULL`,
       `SELECT TIMESTAMP("2023-01-01")`
     )})
     `
