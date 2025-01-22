@@ -35,7 +35,7 @@ async function organizeFiles() {
       await fs.ensureDir(destination);
 
       // Move the file
-      await fs.move(file, targetPath, { overwrite: true });
+      await fs.copy(file, targetPath, { overwrite: true });
       console.log(`Moved: ${file} -> ${targetPath}`);
     }
   }

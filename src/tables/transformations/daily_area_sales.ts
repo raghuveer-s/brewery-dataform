@@ -1,6 +1,10 @@
-import config = require('@includes/globalConfig');
+import { createIncrementalConfig } from '@includes/globalConfig';
+import { PreOps } from '@includes/preops';
 
-publish('daily_area_sales', config)
+publish('daily_area_sales', createIncrementalConfig({
+  partitionBy: 'DATE(d)', 
+  partitionExpirationDays: 7
+}))
   .query(
     (ctx) => `SELECT
   Location as location, 
@@ -13,13 +17,7 @@ WHERE
 GROUP BY
   location, d`
   )
-  .preOps(
-    (ctx) => `
-    DECLARE timestamp_checkpoint 
-    DEFAULT (${ctx.when(
-      ctx.incremental(),
-      `SELECT MAX(d) FROM ${ctx.self()} WHERE d IS NOT NULL`,
-      `SELECT TIMESTAMP("2023-01-01")`
-    )})
-    `
-  );
+  .preOps((ctx) => PreOps.createTimestampCheckpoint(ctx, {
+    columnName: 'd',
+    defaultDate: '2024-01-01'
+  }));
