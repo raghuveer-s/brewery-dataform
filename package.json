@@ -5,8 +5,10 @@
   "main": "index.js",
   "type": "module",
   "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-strip": "^3.0.4",
     "@rollup/plugin-typescript": "^12.1.2",
     "@typescript-eslint/eslint-plugin": "^8.20.0",

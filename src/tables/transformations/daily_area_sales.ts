@@ -1,6 +1,6 @@
-const tableConfig: ITableConfig = config;
+import config = require('@includes/globalConfig');
 
-publish('daily_area_sales', tableConfig)
+publish('daily_area_sales', config)
   .query(
     (ctx) => `SELECT
   Location as location, 

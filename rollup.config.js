@@ -2,6 +2,8 @@ import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import { globSync } from 'glob';
 import path from 'path';
+import alias from '@rollup/plugin-alias';
+import replace from '@rollup/plugin-replace';
 
 const srcDir = 'src';
 const distDir = 'build';
@@ -24,11 +26,18 @@ export default {
     preserveModulesRoot: 'src',
   },
   plugins: [
+    typescript({
+      tsconfig: './tsconfig.json'
+    }),
     resolve({
       extensions: ['.ts', '.js'],
     }),
-    typescript({
-      tsconfig: './tsconfig.json'
+    replace({
+      delimiters: ['', ''],
+      values: {
+        'require("@includes/': 'require("./includes/'
+      },
+      preventAssignment: true
     }),
   ],
 };

@@ -6,7 +6,7 @@ import path from 'path';
 const folderMappings = [
   { source: 'build/tables/sources/*.js', destination: 'definitions/' },
   { source: 'build/tables/transformations/*.js', destination: 'definitions/' },
-  { source: 'build/globals/*.js', destination: 'definitions/includes' },
+  { source: 'build/includes/*.js', destination: 'definitions/includes' },
   { source: 'build/tables/tests/*.js', destination: 'definitions/tests' },
 ];
 

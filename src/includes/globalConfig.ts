@@ -1,3 +1,9 @@
+enum TableType {
+  VIEW = 'view',
+  TABLE = 'table',
+  INCREMENTAL = 'incremental',
+};
+
 const config: ITableConfig = {
   type: TableType.INCREMENTAL,
   bigquery: {
@@ -5,6 +11,6 @@ const config: ITableConfig = {
     requirePartitionFilter: true,
   },
   tags: ['daily'],
-}
+};
 
-declare config;
+export = config;
