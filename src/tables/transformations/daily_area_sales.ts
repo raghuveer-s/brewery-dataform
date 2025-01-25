@@ -1,5 +1,8 @@
 import { createIncrementalConfig } from '@includes/globalConfig';
 import { PreOps } from '@includes/preops';
+import { convertCurrency } from '@currencies-exchange-rates';
+
+const INRToUSDExchangeRate: number = convertCurrency(100, "INR", "USD");
 
 publish('daily_area_sales', createIncrementalConfig({
   partitionBy: 'DATE(d)', 
@@ -9,7 +12,8 @@ publish('daily_area_sales', createIncrementalConfig({
     (ctx) => `SELECT
   Location as location, 
   TIMESTAMP_TRUNC(Brew_Date, DAY) d, 
-  SUM(Total_Sales) AS daily_location_sales
+  SUM(Total_Sales) AS daily_location_sales,
+  SUM(Total_Sales) * ${INRToUSDExchangeRate} AS daily_location_sales_usd
 FROM
   ${ctx.ref('brewery_partitioned_clustered')}
 WHERE

@@ -37,6 +37,7 @@
   "license": "ISC",
   "dependencies": {
     "@dataform/core": "^3.0.9",
+    "currencies-exchange-rates": "^1.0.2",
     "fs-extra": "^11.3.0",
     "glob": "^11.0.1"
   }
