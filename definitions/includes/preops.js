@@ -1,5 +1,5 @@
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.PreOps = undefined;
+'use strict';
+
 var PreOps = /** @class */ (function () {
     function PreOps() {
     }
@@ -15,4 +15,5 @@ var PreOps = /** @class */ (function () {
     };
     return PreOps;
 }());
+
 exports.PreOps = PreOps;

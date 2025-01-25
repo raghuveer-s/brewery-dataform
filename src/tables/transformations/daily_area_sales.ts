@@ -1,6 +1,6 @@
 import { createIncrementalConfig } from '@includes/globalConfig';
 import { PreOps } from '@includes/preops';
-import { convertCurrency } from '@currencies-exchange-rates';
+import { convertCurrency } from '@includes/exchange';
 
 const INRToUSDExchangeRate: number = convertCurrency(100, "INR", "USD");
 

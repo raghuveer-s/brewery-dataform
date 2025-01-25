@@ -1,3 +1,5 @@
+'use strict';
+
 declare({
     database: 'website-code-395711',
     schema: 'brewery',

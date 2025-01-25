@@ -1,18 +1,18 @@
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.TableType = exports.createIncrementalConfig = undefined;
-var TableType;
+'use strict';
+
+exports.TableType = void 0;
 (function (TableType) {
     TableType["VIEW"] = "view";
     TableType["TABLE"] = "table";
     TableType["INCREMENTAL"] = "incremental";
-})(TableType || (exports.TableType = TableType = {}));
+})(exports.TableType || (exports.TableType = {}));
 var BigQueryConfigBuilder = /** @class */ (function () {
     function BigQueryConfigBuilder() {
         this.config = {
             requirePartitionFilter: true, // Default to true for safety
             partitionExpirationDays: 90 // Default expiration
         };
-        this.tableType = TableType.INCREMENTAL;
+        this.tableType = exports.TableType.INCREMENTAL;
     }
     /**
      * Creates an incremental config with required properties
@@ -23,7 +23,7 @@ var BigQueryConfigBuilder = /** @class */ (function () {
             throw new Error('partitionBy and partitionExpiry is required for incremental tables');
         }
         return new BigQueryConfigBuilder()
-            .withType(TableType.INCREMENTAL)
+            .withType(exports.TableType.INCREMENTAL)
             .withPartitionBy(params.partitionBy)
             .withPartitionExpiry((_a = params.partitionExpirationDays) !== null && _a !== undefined ? _a : 90)
             .requirePartitionFilter()
@@ -66,7 +66,7 @@ var BigQueryConfigBuilder = /** @class */ (function () {
      * Builds the final table config
      */
     BigQueryConfigBuilder.prototype.build = function () {
-        if (this.tableType === TableType.INCREMENTAL) {
+        if (this.tableType === exports.TableType.INCREMENTAL) {
             if (!this.config.partitionBy) {
                 throw new Error('partitionBy is required for incremental tables');
             }
@@ -86,4 +86,6 @@ var BigQueryConfigBuilder = /** @class */ (function () {
     return BigQueryConfigBuilder;
 }());
 // Export the factory function
-exports.createIncrementalConfig = BigQueryConfigBuilder.createIncrementalConfig;
+var createIncrementalConfig = BigQueryConfigBuilder.createIncrementalConfig;
+
+exports.createIncrementalConfig = createIncrementalConfig;
